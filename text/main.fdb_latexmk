@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1716052705.87371 "c:/Users/legge/Documents/GitHub/LFU-cache-eviction/main.tex" "main.pdf" "main" 1716052707.37535 0
+["pdflatex"] 1716053155.66284 "c:/Users/legge/Documents/GitHub/LFU-cache-eviction/main.tex" "main.pdf" "main" 1716053157.06874 0
   "6elem.png" 1716048519 19274 e275abd8748c32d274aba8fa8da9ff46 ""
   "C:/Users/legge/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1716046656 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/legge/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1715975328 14064 90c5689e916b19531cda21a4ac0beda0 ""
@@ -180,9 +180,9 @@
   "C:/Users/legge/AppData/Local/Programs/MiKTeX/tex/latex/wrapfig/wrapfig.sty" 1044403200 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "C:/Users/legge/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "after_k.png" 1716048603 20318 0fe22c27a01cc90e5b5b09564f5bbf4d ""
-  "c:/Users/legge/Documents/GitHub/LFU-cache-eviction/main.tex" 1716052705 22620 13cec69fa887ec68827629bbfab496e9 ""
-  "main.aux" 1716052707 1162 ba0a4742053b858373b4ecafb9ea6c23 "pdflatex"
-  "main.tex" 1716052705 22620 13cec69fa887ec68827629bbfab496e9 ""
+  "c:/Users/legge/Documents/GitHub/LFU-cache-eviction/main.tex" 1716053153 22629 70ef09574b1b7f0f1f3cfe0eed2a6aa1 ""
+  "main.aux" 1716053156 1162 61e3fdc74898ae52fcccc72a78231b97 "pdflatex"
+  "main.tex" 1716053153 22629 70ef09574b1b7f0f1f3cfe0eed2a6aa1 ""
   (generated)
   "main.aux"
   "main.log"

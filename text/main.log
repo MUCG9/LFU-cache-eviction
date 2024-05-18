@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.18)  18 MAY 2024 20:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.18)  18 MAY 2024 20:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -855,7 +855,22 @@ File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 141.
  (C:\Users\legge\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [5] [6] (main.aux)
+)
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--225
+
+ []
+
+[6] [7] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
@@ -874,9 +889,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  84i,6n,93p,2174b,531s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1200.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1200.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1200.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1095.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx2488.pk> <C:\Users\legge\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk><C:/Users/legge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/legge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/legge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/legge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on main.pdf (6 pages, 247025 bytes).
+Output written on main.pdf (7 pages, 248142 bytes).
 PDF statistics:
- 508 PDF objects out of 1000 (max. 8388607)
+ 514 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  43 words of extra memory for PDF output out of 10000 (max. 10000000)
 
