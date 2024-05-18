@@ -1,24 +1,19 @@
-CacheNode* createNode(int key, int value) 
-{
-    CacheNode* node = (CacheNode*)malloc(sizeof(CacheNode));
+#ifndef BAZA_H
+#define BAZA_H
 
-    node->key = key;
-    node->value = value;
-    node->freq = 1;
-    node->prev = NULL;
-    node->next = NULL;
+#include <stdio.h>
+#include <stdlib.h>
 
-    return node;
-}
+#endif
 
-Cache* createCache(int capacity) 
-{
-    Cache* cache = (Cache*)malloc(sizeof(Cache));
 
-    cache->capacity = capacity;
-    cache->size = 0;
-    cache->head = NULL;
-    cache->tail = NULL;
+#ifndef STRUCT_H
+#define STRUCT_H
 
-    return cache;
-}
+#include "struct.h"
+
+#endif
+
+CacheNode* createNode(int key, int value);
+
+Cache* createCache(int capacity);
