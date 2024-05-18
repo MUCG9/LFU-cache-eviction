@@ -4,17 +4,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#endif //BAZA_H
+#endif
 
 #ifndef CREATE_H
 #define CREATE_H
 
 #include "create.h"
 
-#endif //CREATE_H
+#endif
 
-
-// Создание нового узла кэша
 CacheNode* createNode(int key, int value)
 {
     CacheNode* node = (CacheNode*)malloc(sizeof(CacheNode));
@@ -26,7 +24,6 @@ CacheNode* createNode(int key, int value)
     return node;
 }
 
-// Создание кэша
 Cache* createCache(int capacity)
 {
     Cache* cache = (Cache*)malloc(sizeof(Cache));
