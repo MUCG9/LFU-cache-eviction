@@ -13,7 +13,7 @@
 
 #endif //LFUCACHE_H
 
-void removeNode(Cache* cache, CacheNode* node)
+void removeNode(Cache* cache, CacheNode* node) 
 {
     if (node->prev) {
         node->prev->next = node->next;
@@ -30,7 +30,7 @@ void removeNode(Cache* cache, CacheNode* node)
 }
 
 // Вставка узла в начало кэша
-void insertHead(Cache* cache, CacheNode* node)
+void insertHead(Cache* cache, CacheNode* node) 
 {
     node->next = cache->head;
     node->prev = NULL;
@@ -43,54 +43,56 @@ void insertHead(Cache* cache, CacheNode* node)
     cache->size++;
 }
 
-// Обновление частоты использования узла
-void updateFrequency(Cache* cache, CacheNode* node)
+void updateFrequency(Cache* cache, CacheNode* node) 
 {
     node->freq++;
-    if (node->next && node->next->freq <= node->freq)
-    {
-        // Удаляем узел из текущей позиции
-        removeNode(cache, node);
-        // Ищем новую позицию для узла
-        CacheNode* current = cache->head;
+    CacheNode* current = node->prev;
+    while (current && current->freq <= node->freq) {
+        current = current->prev;
+    }
 
-        while (current && current->freq <= node->freq)
-        {
-            current = current->next;
-        }
-        // Вставляем узел перед current
-        node->next = current;
+    // Удаляем узел из текущей позиции
+    if (node->prev) {
+        node->prev->next = node->next;
+    } else {
+        cache->head = node->next;
+    }
+    if (node->next) {
+        node->next->prev = node->prev;
+    } else {
+        cache->tail = node->prev;
+    }
 
-        if (current)
-        {
-            node->prev = current->prev;
-            current->prev = node;
-        }
-        else
-        {
-            node->prev = cache->tail;
+    // Вставляем узел в новую позицию
+    if (current) {
+        node->next = current->next;
+        node->prev = current;
+        if (current->next) {
+            current->next->prev = node;
+        } else {
             cache->tail = node;
         }
+        current->next = node;
+    } else {
+        node->next = cache->head;
+        if (cache->head) {
+            cache->head->prev = node;
+        }
+        cache->head = node;
+        node->prev = NULL;
+    }
 
-        if (node->prev)
-        {
-            node->prev->next = node;
-        }
-        else
-        {
-            cache->head = node;
-        }
+    if (!node->next) {
+        cache->tail = node;
     }
 }
 
 // Получение значения по ключу из кэша
-int get(Cache* cache, int key)
+int get(Cache* cache, int key) 
 {
     CacheNode* current = cache->head;
-    while (current)
-    {
-        if (current->key == key)
-        {
+    while (current) {
+        if (current->key == key) {
             updateFrequency(cache, current);
             return current->value;
         }
@@ -100,13 +102,11 @@ int get(Cache* cache, int key)
 }
 
 // Вставка нового значения в кэш
-void put(Cache* cache, int key, int value)
+void put(Cache* cache, int key, int value) 
 {
     CacheNode* current = cache->head;
-    while (current)
-    {
-        if (current->key == key)
-        {
+    while (current) {
+        if (current->key == key) {
             current->value = value;
             updateFrequency(cache, current);
             return;
@@ -114,11 +114,11 @@ void put(Cache* cache, int key, int value)
         current = current->next;
     }
 
-    if (cache->size == cache->capacity)
-    {
+    if (cache->size == cache->capacity) {
         // Удаляем узел с наименьшей частотой
         removeNode(cache, cache->tail);
     }
+
     // Вставляем новый узел
     CacheNode* node = createNode(key, value);
     insertHead(cache, node);
