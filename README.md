@@ -38,13 +38,13 @@
 
 1. **Склонируйте репозиторий**:
     ```sh
-    git clone https://github.com/username/lfu-cache-c.git
-    cd lfu-cache-c
+    git clone ...
+    cd ...
     ```
 
 2. **Соберите проект**:
     ```sh
-    gcc -o lfu_cache main.c lfu_cache.c test.c
+    gcc -o ...
     ```
 
 3. **Запустите программу**:
