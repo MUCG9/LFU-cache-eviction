@@ -12,3 +12,16 @@ typedef struct LFUCache {
     LFUNode *head;
     LFUNode *tail;
 } LFUCache;
+
+LFUNode* LFUcreateNode(int key, int value) 
+{
+    LFUNode* node = (LFUNode*)malloc(sizeof(LFUNode));
+
+    node->key = key;
+    node->value = value;
+    node->frequency = 1;
+    node->prev = NULL;
+    node->next = NULL;
+
+    return node;
+}
