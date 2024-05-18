@@ -9,14 +9,14 @@ typedef struct CacheNode {
 typedef struct Cache {
     int capacity;                   
     int size;                       
-    LFUNode *head;
-    LFUNode *tail;
+    CacheNode *head;
+    CacheNode *tail;
 } Cache;
 
 CacheNode* createNode(int key, int value) 
 {
     CacheNode* node = (CacheNode*)malloc(sizeof(CacheNode));
-    
+
     node->key = key;
     node->value = value;
     node->freq = 1;
