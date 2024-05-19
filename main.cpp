@@ -1,20 +1,51 @@
+#ifndef BAZA_H
+#define BAZA_H
+
 #include <stdio.h>
 #include <stdlib.h>
 
+#endif //BAZA_H
+
+
+#ifndef STRUCT_H
+#define STRUCT_H
+
+#include "struct.h"
+
+#endif //STRUCT_H
+
+
+#ifndef LFUCACHE_H
+#define LFUCACHE_H
+
+#include "lfu_cache.h"
+
+#endif //LFUCACHE_H
+
+int IWANTTOHAVEATEST = 0;
+
+#define TEST_H
+#ifdef TEST_H
+
+#include "test.h"
+IWANTTOHAVEATEST = 1;
+
+#endif //TEST_H
+
 int main()
 {
-    int m    = 0;
-    int n    = 0;
-    int hits = 0;
+    int capacity = 0;
+    int n        = 0;
+    int hits     = 0;
 
-    if (scanf("%d %d", &m, &n) != 2) 
+    if (scanf("%d %d", &capacity, &n) != 2)
     {
         return 1;
     }
 
     int* requests = (int*)malloc(n * sizeof(int));
 
-    for (int i = 0; i < n; i++) 
+    for (int i = 0; i < n; i++)
     {
         if (scanf("%d", &requests[i]) != 1) {
             free(requests);
@@ -23,11 +54,14 @@ int main()
         }
     }
 
-    hits = LFUCacheHits(m, n, requests);
+    hits = LFUCacheHits(capacity, n, requests);
     printf("%d\n", hits);
 
-    free(requests);
+    if (IWANTTOHAVEATEST == 1)
+    {
+        testCache();
+    }
 
-    testCache();
+    free(requests);
     return 0;
 }

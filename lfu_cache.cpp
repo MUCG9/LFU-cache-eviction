@@ -13,7 +13,7 @@
 
 #endif //LFUCACHE_H
 
-// РЈРґР°Р»РµРЅРёРµ СѓР·Р»Р° РёР· РєСЌС€Р°
+// Удаление узла из кэша
 void removeNode(Cache* cache, CacheNode* node) {
     if (node->prev) {
         node->prev->next = node->next;
@@ -29,7 +29,7 @@ void removeNode(Cache* cache, CacheNode* node) {
     cache->size--;
 }
 
-// Р’СЃС‚Р°РІРєР° СѓР·Р»Р° РІ РЅР°С‡Р°Р»Рѕ РєСЌС€Р°
+// Вставка узла в начало кэша
 void insertHead(Cache* cache, CacheNode* node) {
     node->next = cache->head;
     node->prev = NULL;
@@ -42,7 +42,7 @@ void insertHead(Cache* cache, CacheNode* node) {
     cache->size++;
 }
 
-// РћР±РЅРѕРІР»РµРЅРёРµ С‡Р°СЃС‚РѕС‚С‹ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СѓР·Р»Р°
+// Обновление частоты использования узла
 void updateFrequency(Cache* cache, CacheNode* node) {
     node->freq++;
     CacheNode* current = node->prev;
@@ -120,3 +120,36 @@ void put(Cache* cache, int key, int value) {
     CacheNode* node = createNode(key, value);
     insertHead(cache, node);
 }
+
+//счётчик числа попаданий в кэш
+int LFUCacheHits(int capacity, int n, int* requests)
+{
+    Cache* cache = createCache(capacity);
+    int hits = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        int page = requests[i];
+        if (get(cache, page) != -1)
+        {
+            hits++;
+        }
+        else
+        {
+            put(cache, page, page);
+        }
+    }
+
+    CacheNode* current = cache->head;
+    while (current)
+    {
+        CacheNode* next = current->next;
+        free(current);
+        current = next;
+    }
+
+    free(cache);
+
+    return hits;
+}
+

@@ -37,3 +37,6 @@ void put(Cache* cache, int key, int value);
 
 // Получение значения по ключу из кэша
 int get(Cache* cache, int key);
+
+//счётчик числа попаданий в кэш
+int LFUCacheHits(int capacity, int n, int* requests);
