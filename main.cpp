@@ -31,31 +31,31 @@
 
 int main()
 {
-    int capacity = 0;
-    int n        = 0;
-    int hits     = 0;
+    // int capacity = 0;
+    // int n        = 0;
+    // int hits     = 0;
 
-    if (scanf("%d %d", &capacity, &n) != 2)
-    {
-        return 1;
-    }
+    // if (scanf("%d %d", &capacity, &n) != 2)
+    // {
+    //     return 1;
+    // }
 
-    int* requests = (int*)malloc(n * sizeof(int));
+    // int* requests = (int*)malloc(n * sizeof(int));
 
-    for (int i = 0; i < n; i++)
-    {
-        if (scanf("%d", &requests[i]) != 1) {
-            free(requests);
+    // for (int i = 0; i < n; i++)
+    // {
+    //     if (scanf("%d", &requests[i]) != 1) {
+    //         free(requests);
 
-            return 1;
-        }
-    }
+    //         return 1;
+    //     }
+    // }
 
-    hits = LFUCacheHits(capacity, n, requests);
-    printf("%d\n", hits);
+    // hits = LFUCacheHits(capacity, n, requests);
+    // printf("%d\n", hits);
 
     testCache();
 
-    free(requests);
+    // free(requests);
     return 0;
 }
