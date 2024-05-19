@@ -13,7 +13,7 @@
 
 #endif //LFUCACHE_H
 
-// Удаление узла из кэша
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 void removeNode(Cache* cache, CacheNode* node) {
     if (node->prev) {
         node->prev->next = node->next;
@@ -29,7 +29,7 @@ void removeNode(Cache* cache, CacheNode* node) {
     cache->size--;
 }
 
-// Вставка узла в начало кэша
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 void insertHead(Cache* cache, CacheNode* node) {
     node->next = cache->head;
     node->prev = NULL;
@@ -42,7 +42,7 @@ void insertHead(Cache* cache, CacheNode* node) {
     cache->size++;
 }
 
-// Обновление частоты использования узла
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 void updateFrequency(Cache* cache, CacheNode* node) {
     node->freq++;
     CacheNode* current = node->prev;
@@ -121,7 +121,7 @@ void put(Cache* cache, int key, int value) {
     insertHead(cache, node);
 }
 
-//счётчик числа попаданий в кэш
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 int LFUCacheHits(int capacity, int n, int* requests)
 {
     Cache* cache = createCache(capacity);

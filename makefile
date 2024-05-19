@@ -1,44 +1,26 @@
-# Имя исполняемого файла
-EXEC = main
-# Компилятор
-CXX = gcc
+DED_FLAGS=-Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs -Wswitch-enum -Wswitch-default -Weffc++ -Wmain -Wextra -Wall -g -pipe -fexceptions -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wno-missing-field-initializers -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla -D_DEBUG -D_EJUDGE_CLIENT_SIDE
 
-# Флаги компилятора
-CXXFLAGS = -Wall -Wextra -pedantic -std=c++11 -g
+OBJECTS=main.o test.o lfu_cache.o create.o
 
-# Файлы исходного кода
-SRCS = main.cpp struct.cpp create.cpp lfu_cache.cpp test.cpp
+CC=g++
 
-# Заголовочные файлы
-HEADERS = struct.h create.h lfu_cache.h test.h
+all: kvadros
 
-# Объектные файлы
-OBJS = $(SRCS:.cpp=.o)
+kvadros: $(OBJECTS)
+	$(CC) $(OBJECTS) -o kvadros
 
-# Флаги для Valgrind
-VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
+main.o: main.cpp
+	$(CC) main.cpp -c $(DED_FLAGS)
 
-# Правило по умолчанию, компиляция исполняемого файла
-all: $(EXEC)
+test.o: test.cpp
+	$(CC) test.cpp -c $(DED_FLAGS)
 
-# Правило для компиляции исполняемого файла
-$(EXEC): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
+lfu_cache.o: lfu_cache.cpp
+	$(CC) lfu_cache.cpp -c $(DED_FLAGS)
 
-# Правило для компиляции объектных файлов
-%.o: %.cpp $(HEADERS)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+create.o: create.cpp
+	$(CC) create.cpp -c $(DED_FLAGS)
 
-# Правило для запуска тестов
-test: $(EXEC)
-	./$(EXEC)
-
-# Правило для запуска тестов с Valgrind
-valgrind: $(EXEC)
-	valgrind $(VALGRIND_FLAGS) ./$(EXEC)
-
-# Очистка скомпилированных файлов
 clean:
-	rm -f $(EXEC) $(OBJS)
-
-.PHONY: all test valgrind clean
+	rm -rf *.o kvadros
+	rm -rf *.save kvadros

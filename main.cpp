@@ -55,7 +55,7 @@ int main()
     printf("%d\n", hits);
 
     testCache();
-    
+
     free(requests);
     return 0;
 }
