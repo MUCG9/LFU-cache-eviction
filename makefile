@@ -7,7 +7,7 @@ CXX = gcc
 CXXFLAGS = -Wall -Wextra -pedantic -std=c++11 -g
 
 # Файлы исходного кода
-SRCS = main.cpp struct.cpp create.cpp lfu_cache.cpp test.cpp
+SRCS = main.cpp struct.h create.cpp lfu_cache.cpp test.cpp
 
 # Заголовочные файлы
 HEADERS = struct.h create.h lfu_cache.h test.h
