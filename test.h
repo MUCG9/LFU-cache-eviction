@@ -23,21 +23,4 @@
 #endif //LFUCACHE_H
 
 // ������� ������������ ����
-void testCache() {
-    Cache* cache = createCache(3);
-    put(cache, 1, 10);
-    put(cache, 2, 20);
-    put(cache, 3, 30);
-
-    printf("Znachenie dlya key 1: %d\n", get(cache, 1));
-    put(cache, 4, 40);
-
-    printf("Znachenie dlya key 2: %d\n", get(cache, 2));
-    printf("Znachenie dlya key 3: %d\n", get(cache, 3));
-    printf("Znachenie dlya key 4: %d\n", get(cache, 4));
-
-    put(cache, 5, 50);
-    printf("Znachenie dlya key 1: %d\n", get(cache, 1));
-    printf("Znachenie dlya key 3: %d\n", get(cache, 3));
-    printf("Znachenie dlya key 5: %d\n", get(cache, 5));
-}
+void testCache();

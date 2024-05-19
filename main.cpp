@@ -22,13 +22,10 @@
 
 #endif //LFUCACHE_H
 
-int IWANTTOHAVEATEST = 0;
-
+#ifndef TEST_H
 #define TEST_H
-#ifdef TEST_H
 
 #include "test.h"
-IWANTTOHAVEATEST = 1;
 
 #endif //TEST_H
 
@@ -57,11 +54,8 @@ int main()
     hits = LFUCacheHits(capacity, n, requests);
     printf("%d\n", hits);
 
-    if (IWANTTOHAVEATEST == 1)
-    {
-        testCache();
-    }
-
+    testCache();
+    
     free(requests);
     return 0;
 }
