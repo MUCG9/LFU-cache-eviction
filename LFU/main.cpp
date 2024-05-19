@@ -6,6 +6,12 @@
 
 #endif //BAZA_H
 
+#ifndef SYSTIME_H
+#define SYSTIME_H
+
+#include <sys/time.h>
+
+#endif //SYSTIME_H
 
 #ifndef STRUCT_H
 #define STRUCT_H
@@ -24,6 +30,9 @@
 
 int main()
 {
+    struct timeval start, end;
+    double elapsed;
+
     int capacity = 0;
     int n        = 0;
     int hits     = 0;
@@ -44,8 +53,14 @@ int main()
         }
     }
 
+    gettimeofday(&start, NULL);
     hits = LFUCacheHits(capacity, n, requests);
+    gettimeofday(&end, NULL);
+
     printf("%d\n", hits);
+
+    elapsed = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
+    printf("LFU time: %f sec\n", elapsed);
 
     free(requests);
     return 0;
