@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef SYSTIME_H
+#define SYSTIME_H
+
+#include <sys/time.h>
+
 #define HASH_SIZE 100000
 
 typedef struct Node
@@ -187,6 +192,8 @@ int main()
 {
     int m, n, i;
     int page, hits = 0;
+    struct timeval start, end;
+    double elapsed;
     LRUCache *cache;
     HashTable *hashTable;
 
@@ -209,7 +216,14 @@ int main()
     deleteLRUCache(cache);
     free(hashTable);
 
+    gettimeofday(&start, NULL);
+    hits = LFUCacheHits(capacity, n, requests);
+    gettimeofday(&end, NULL);
+
     printf("%d\n", hits);
+
+    elapsed = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
+    printf("LFU time: %f sec\n", elapsed);
 
     return 0;
 }
