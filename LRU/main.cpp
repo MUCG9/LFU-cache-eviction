@@ -1,9 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#ifndef SYSTIME_H
-#define SYSTIME_H
-
 #include <sys/time.h>
 
 #define HASH_SIZE 100000
@@ -206,6 +202,7 @@ int main()
         hashTable->table[i] = NULL;
     }
 
+    gettimeofday(&start, NULL);
     for (i = 0; i < n; i++)
     {
         scanf("%d", &page);
@@ -216,8 +213,6 @@ int main()
     deleteLRUCache(cache);
     free(hashTable);
 
-    gettimeofday(&start, NULL);
-    hits = LFUCacheHits(capacity, n, requests);
     gettimeofday(&end, NULL);
 
     printf("%d\n", hits);
