@@ -13,7 +13,7 @@
 
 #endif //LFUCACHE_H
 
-// �������� ���� �� ����
+// Удаление узла из кэша
 void removeNode(Cache* cache, CacheNode* node) 
 {
     if (node->prev) 
@@ -38,7 +38,7 @@ void removeNode(Cache* cache, CacheNode* node)
     cache->size--;
 }
 
-// ������� ���� � ������ ����
+// Вставка узла в начало кэша
 void insertHead(Cache* cache, CacheNode* node) 
 {
     node->next = cache->head;
@@ -57,7 +57,7 @@ void insertHead(Cache* cache, CacheNode* node)
     cache->size++;
 }
 
-// ���������� ������� ������������� ����
+// Обновление частоты использования узла 
 void updateFrequency(Cache* cache, CacheNode* node) 
 {
     node->freq++;
@@ -166,7 +166,7 @@ void put(Cache* cache, int key, int value)
     insertHead(cache, node);
 }
 
-//������� ����� ��������� � ���
+// Основная функция для подсчета количества попаданий в кэш
 int LFUCacheHits(int capacity, int n, int* requests)
 {
     Cache* cache = createCache(capacity);
