@@ -186,46 +186,55 @@ void addPage(LRUCache *cache, HashTable *hashTable, int elt)
 
 int main()
 {
-    int m, n, i;
-    int page, hits = 0;
+    int m = 0, n = 0, i = 0;
+    int hits = 0;
     struct timeval start, end;
     double elapsed;
     LRUCache *cache;
     HashTable *hashTable;
     int *inputArray;
 
-    scanf("%d %d", &m, &n);
-
-    cache = createLRUCache(m);
-    hashTable = (HashTable *)malloc(sizeof(HashTable));
-    inputArray = (int *)malloc(n * sizeof(int));
-    for (i = 0; i < HASH_SIZE; i++)
+    while (scanf("%d %d", &m, &n) == 2)
     {
-        hashTable->table[i] = NULL;
+        hits = 0;
+        cache = createLRUCache(m);
+        hashTable = (HashTable *)malloc(sizeof(HashTable));
+        inputArray = (int *)malloc(n * sizeof(int));
+
+        for (i = 0; i < HASH_SIZE; i++)
+        {
+            hashTable->table[i] = NULL;
+        }
+
+        //printf("%d %d\n", m, n);
+
+        for (i = 0; i < n; i++)
+        {
+            scanf("%d", &inputArray[i]);
+        }
+
+        //printf("%d %d\n", m, n);
+
+        gettimeofday(&start, NULL);
+
+        for (i = 0; i < n; i++)
+        {
+            hits += cacheHit(cache, hashTable, inputArray[i]);
+            addPage(cache, hashTable, inputArray[i]);
+        }
+
+        gettimeofday(&end, NULL);
+
+        deleteLRUCache(cache);
+
+        printf("%d\n", hits);
+
+        elapsed = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
+        printf("%f\n", elapsed);
+
+        free(hashTable);
+        free(inputArray);
+
     }
-
-    for (i = 0; i < n; i++)
-    {
-        scanf("%d", &inputArray[i]);
-    }
-
-    gettimeofday(&start, NULL);
-
-    for (i = 0; i < n; i++)
-    {
-        hits += cacheHit(cache, hashTable, inputArray[i]);
-        addPage(cache, hashTable, inputArray[i]);
-    }
-
-    gettimeofday(&end, NULL);
-
-    deleteLRUCache(cache);
-
-    printf("%d\n", hits);
-
-    elapsed = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
-    printf("LRU time: %f sec\n", elapsed);
-    free(hashTable);
-    free(inputArray);
     return 0;
 }
