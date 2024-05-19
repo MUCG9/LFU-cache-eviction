@@ -22,5 +22,4 @@
 
 #endif //LFUCACHE_H
 
-// ������� ������������ ����
 void testCache();
