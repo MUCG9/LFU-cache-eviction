@@ -1,4 +1,5 @@
-typedef struct CacheNode {
+typedef struct CacheNode
+{
     int key;              
     int value;             
     int freq;          
@@ -6,7 +7,8 @@ typedef struct CacheNode {
     struct CacheNode* prev;  
 } CacheNode;
 
-typedef struct Cache {
+typedef struct Cache
+{
     int capacity;                   
     int size;                       
     CacheNode *head;
