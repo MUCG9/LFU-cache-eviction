@@ -37,31 +37,30 @@ int main()
     int n        = 0;
     int hits     = 0;
 
-    if (scanf("%d %d", &capacity, &n) != 2)
+    while (scanf("%d %d", &capacity, &n) == 2)
     {
-        return 1;
-    }
+        int* requests = (int*)malloc(n * sizeof(int));
 
-    int* requests = (int*)malloc(n * sizeof(int));
+        for (int i = 0; i < n; i++)
+        {
+            if (scanf("%d", &requests[i]) != 1) {
+                free(requests);
 
-    for (int i = 0; i < n; i++)
-    {
-        if (scanf("%d", &requests[i]) != 1) {
-            free(requests);
-
-            return 1;
+                return 1;
+            }
         }
+
+        gettimeofday(&start, NULL);
+        hits = LFUCacheHits(capacity, n, requests);
+        gettimeofday(&end, NULL);
+
+        printf("%d\n", hits);
+
+        elapsed = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
+        printf("%f\n", elapsed);
+
+        free(requests);
     }
 
-    gettimeofday(&start, NULL);
-    hits = LFUCacheHits(capacity, n, requests);
-    gettimeofday(&end, NULL);
-
-    printf("%d\n", hits);
-
-    elapsed = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
-    printf("LFU time: %f sec\n", elapsed);
-
-    free(requests);
     return 0;
 }
