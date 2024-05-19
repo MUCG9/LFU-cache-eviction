@@ -13,6 +13,7 @@
 
 #endif
 
+// Создание нового узла кэш
 CacheNode* createNode(int key, int value)
 {
     CacheNode* node = (CacheNode*)malloc(sizeof(CacheNode));
@@ -24,6 +25,7 @@ CacheNode* createNode(int key, int value)
     return node;
 }
 
+// Создание кэша
 Cache* createCache(int capacity)
 {
     Cache* cache = (Cache*)malloc(sizeof(Cache));
