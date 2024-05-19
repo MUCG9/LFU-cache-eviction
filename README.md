@@ -28,10 +28,10 @@
 
 Проект состоит из 5 основных файлов:
 
-- [main.cpp](https://github.com/MUCG9/LFU-cache-eviction/blob/main/LFU/main.cpp) -- заголовочный файл 
-- [lfu_cache.cpp](https://github.com/MUCG9/LFU-cache-eviction/blob/main/LFU/lfu_cache.cpp) -- файл, содержащий функции работы с кэшом
-- [struct.cpp](https://github.com/MUCG9/LFU-cache-eviction/blob/main/LFU/struct.cpp) -- файл со структурами
-- [create.cpp](https://github.com/MUCG9/LFU-cache-eviction/blob/main/LFU/create.cpp) -- файл с функциями создания кэша
+- [main.cpp](https://github.com/MUCG9/LFU-cache-eviction/blob/main/LFU/main.cpp) - заголовочный файл 
+- [lfu_cache.cpp](https://github.com/MUCG9/LFU-cache-eviction/blob/main/LFU/lfu_cache.cpp) - файл, содержащий функции работы с кэшом
+- [struct.cpp](https://github.com/MUCG9/LFU-cache-eviction/blob/main/LFU/struct.cpp) - файл со структурами
+- [create.cpp](https://github.com/MUCG9/LFU-cache-eviction/blob/main/LFU/create.cpp) - файл с функциями создания кэша
 
 ## Требования
 
