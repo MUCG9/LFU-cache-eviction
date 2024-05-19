@@ -29,9 +29,9 @@ $(EXEC): $(OBJS)
 %.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Правило для запуска тестов
-test: $(EXEC)
-	./$(EXEC)
+# # Правило для запуска тестов
+# test: $(EXEC)
+# 	./$(EXEC)
 
 # Правило для запуска тестов с Valgrind
 valgrind: $(EXEC)
