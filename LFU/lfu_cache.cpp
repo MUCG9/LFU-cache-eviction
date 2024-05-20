@@ -14,55 +14,65 @@
 #endif //LFUCACHE_H
 
 // Удаление узла из кэша
+// Функция удаляет узел `node` из двусвязного списка кэша `cache`.
 void removeNode(Cache* cache, CacheNode* node) 
 {
+    // Если есть предыдущий узел, устанавливаем его указатель next на следующий узел
     if (node->prev) 
     {
         node->prev->next = node->next;
     } 
-    else
+    else // Если удаляемый узел первый, меняем указатель head кэша
     {
         cache->head = node->next;
     }
 
+    // Если есть следующий узел, устанавливаем его указатель prev на предыдущий узел
     if (node->next) 
     {
         node->next->prev = node->prev;
     } 
-    else 
+    else // Если удаляемый узел последний, меняем указатель tail кэша
     {
         cache->tail = node->prev;
     }
-    
+
+    // Освобождаем память, занимаемую узлом
     free(node);
-    cache->size--;
+    cache->size--; // Уменьшаем размер кэша
 }
 
 // Вставка узла в начало кэша
+// Функция добавляет узел `node` в начало двусвязного списка кэша `cache`.
 void insertHead(Cache* cache, CacheNode* node) 
 {
+    // Устанавливаем указатели узла на текущую голову кэша
     node->next = cache->head;
     node->prev = NULL;
 
+    // Если кэш не пустой, устанавливаем указатель prev текущей головы на новый узел
     if (cache->head) 
     {
         cache->head->prev = node;
     } 
-    else 
+    else // Если кэш пустой, устанавливаем tail на новый узел
     {
         cache->tail = node;
     }
 
+    // Устанавливаем новый узел как голову кэша
     cache->head = node;
-    cache->size++;
+    cache->size++; // Увеличиваем размер кэша
 }
 
-// Обновление частоты использования узла 
+// Обновление частоты использования узла
+// Функция увеличивает частоту использования узла `node` и перемещает его на новое место в кэше `cache` в соответствии с новой частотой.
 void updateFrequency(Cache* cache, CacheNode* node) 
 {
-    node->freq++;
+    node->freq++; // Увеличиваем частоту использования узла
     CacheNode* current = node->prev;
 
+    // Ищем позицию для узла с учетом обновленной частоты
     while (current && current->freq <= node->freq) 
     {
         current = current->prev;
@@ -87,7 +97,7 @@ void updateFrequency(Cache* cache, CacheNode* node)
         cache->tail = node->prev;
     }
 
-    // Вставляем узел в новую позицию
+    // Вставляем узел в новую позицию, найденную ранее
     if (current) 
     {
         node->next = current->next;
@@ -103,7 +113,7 @@ void updateFrequency(Cache* cache, CacheNode* node)
         }
         current->next = node;
     } 
-    else 
+    else // Если узел должен стать новым началом списка
     {
         node->next = cache->head;
 
@@ -116,22 +126,27 @@ void updateFrequency(Cache* cache, CacheNode* node)
         node->prev = NULL;
     }
 
+    // Если узел оказался в конце списка, обновляем tail
     if (!node->next) {
         cache->tail = node;
     }
 }
 
 // Получение значения по ключу из кэша
+// Функция ищет узел с ключом `key` в кэше `cache`.
+// Если узел найден, увеличивает его частоту и возвращает его значение.
+// Иначе возвращает -1.
 int get(Cache* cache, int key) 
 {
     CacheNode* current = cache->head;
 
+    // Поиск узла с заданным ключом
     while (current) 
     {
         if (current->key == key) 
         {
-            updateFrequency(cache, current);
-            return current->value;
+            updateFrequency(cache, current); // Увеличиваем частоту использования узла
+            return current->value; // Возвращаем значение узла
         }
         current = current->next;
     }
@@ -140,52 +155,61 @@ int get(Cache* cache, int key)
 }
 
 // Вставка нового значения в кэш
+// Функция вставляет новый узел с ключом `key` и значением `value` в кэш `cache`.
+// Если узел с таким ключом уже существует, обновляет его значение и увеличивает частоту.
+// Если кэш заполнен, удаляет узел с наименьшей частотой.
 void put(Cache* cache, int key, int value)
 {
     CacheNode* current = cache->head;
 
+    // Поиск узла с заданным ключом
     while (current) 
     {
         if (current->key == key) 
         {
-            current->value = value;
-            updateFrequency(cache, current);
+            current->value = value; // Обновляем значение
+            updateFrequency(cache, current); // Увеличиваем частоту использования узла
             return;
         }
         current = current->next;
     }
 
+    // Если кэш заполнен, удаляем узел с наименьшей частотой
     if (cache->size == cache->capacity) 
     {
-        // Удаляем узел с наименьшей частотой
         removeNode(cache, cache->tail);
     }
 
-    // Вставляем новый узел
+    // Создаем новый узел и вставляем его в начало кэша
     CacheNode* node = createNode(key, value);
     insertHead(cache, node);
 }
 
 // Основная функция для подсчета количества попаданий в кэш
+// Функция создает кэш с заданной емкостью `capacity`, обрабатывает запросы из массива `requests` и возвращает количество попаданий в кэш.
 int LFUCacheHits(int capacity, int n, int* requests)
 {
+    // Создаем кэш заданной емкости
     Cache* cache = createCache(capacity);
     int hits = 0;
 
+    // Проходим через все запросы
     for (int i = 0; i < n; i++)
     {
         int page = requests[i];
 
+        // Если страница уже в кэше, увеличиваем счетчик попаданий
         if (get(cache, page) != -1)
         {
             hits++;
         }
-        else
+        else // Иначе вставляем новую страницу в кэш
         {
             put(cache, page, page);
         }
     }
 
+    // Освобождаем память, занимаемую кэшем
     CacheNode* current = cache->head;
 
     while (current)
@@ -197,6 +221,5 @@ int LFUCacheHits(int capacity, int n, int* requests)
 
     free(cache);
 
-    return hits;
+    return hits; // Возвращаем количество попаданий
 }
-

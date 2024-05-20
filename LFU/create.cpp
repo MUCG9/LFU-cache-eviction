@@ -13,19 +13,19 @@
 
 #endif
 
-// Создание нового узла кэш
+// Создание нового узла кэша с заданным ключом и значением
 CacheNode* createNode(int key, int value)
 {
     CacheNode* node = (CacheNode*)malloc(sizeof(CacheNode));
     node->key = key;
     node->value = value;
-    node->freq = 1;
+    node->freq = 1; // Частота использования по умолчанию равна 1
     node->prev = NULL;
     node->next = NULL;
     return node;
 }
 
-// Создание кэша
+// Создание пустого кэша с заданной емкостью
 Cache* createCache(int capacity)
 {
     Cache* cache = (Cache*)malloc(sizeof(Cache));
